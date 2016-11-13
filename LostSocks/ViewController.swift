@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
+    let mapView = MKMapView()
+    let socks = [Sock]()
+    var locationManager = CLLocationManager()
+    
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        checkLocationAuthorizationStatus()
         APIWrapper.loginUser(username: "user", password: "pass" , completionHandler: { success in
             if success {
                 APIWrapper.getSocks(completionHandler: { (socks) in
@@ -25,18 +33,67 @@ class ViewController: UIViewController {
             } else {
                 
             }
-        
+            
         })
-        
-        
-        
     }
+    
+	override func viewDidLoad() {
+		super.viewDidLoad()
+        title = "Lost Socks"
+        setupConstraints()
+        mapView.delegate = self
+        
+        APIWrapper.getSocks { (socks) in
+            self.updateAnnotations(socks: socks)
+        }
+        
+        
+	}
+    
+    func updateAnnotations(socks: [Sock]) {
+        for sock in socks {
+            mapView.addAnnotation(sock)
+        }
+    }
+    
+    func setupConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(mapView)
+        
+        mapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        mapView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        mapView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+
+    }
+    
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 
 
 }
 
+
+extension ViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? Sock {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+            }
+            return view
+        }
+        return nil
+    }
+}

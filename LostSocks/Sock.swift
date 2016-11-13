@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MapKit
 
-struct Sock {
+class Sock: NSObject, MKAnnotation {
     var id: Int?
     var desc: String
     var img: String
@@ -19,9 +20,19 @@ struct Sock {
     var imageBase64: String?
     var demouser_id: Int?
     
-}
-
-extension Sock {
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        }
+    }
+    
+    var title: String? {
+        get {
+            return name
+        }
+    }
+    
+    
     init(node: Dictionary<String, Any>) {
         id = node["id"] as! Int
         desc = node["desc"] as! String
@@ -37,20 +48,20 @@ extension Sock {
         if let user = node["demouser_id"] as? Int {
             demouser_id = user
         }
-
+        
     }
     
     func json() -> Dictionary<String, Any> {
-        
         return[
-                "name": name,
-                "desc": desc,
-                "img": img,
-                "time": time,
-                "lat" : lat,
-                "lon" : lon,
-                "imageBase64": imageBase64 ?? "",
-            ]
-        
+            "name": name,
+            "desc": desc,
+            "img": img,
+            "time": time,
+            "lat" : lat,
+            "lon" : lon,
+            "imageBase64": imageBase64 ?? "",
+        ]
     }
+    
 }
+
