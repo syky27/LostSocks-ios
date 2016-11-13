@@ -11,15 +11,23 @@
 		3578C6E91DC12091009E8F73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3578C6E81DC12091009E8F73 /* ViewController.swift */; };
 		3578C6EE1DC12091009E8F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3578C6ED1DC12091009E8F73 /* Assets.xcassets */; };
 		3578C6F11DC12091009E8F73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3578C6EF1DC12091009E8F73 /* LaunchScreen.storyboard */; };
+		35FDF6B01DD7A6ED00104244 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351798CE1DD7A4890025B653 /* Alamofire.framework */; };
+		35FDF6B21DD7A70700104244 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FDF6B11DD7A70700104244 /* Router.swift */; };
+		35FDF7061DD7A91D00104244 /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FDF7051DD7A91D00104244 /* APIWrapper.swift */; };
+		35FDF7081DD7F01800104244 /* Sock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FDF7071DD7F01800104244 /* Sock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		351798CE1DD7A4890025B653 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		3578C6E31DC12091009E8F73 /* LostSocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LostSocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3578C6E61DC12091009E8F73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3578C6E81DC12091009E8F73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3578C6ED1DC12091009E8F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3578C6F01DC12091009E8F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3578C6F21DC12091009E8F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35FDF6B11DD7A70700104244 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		35FDF7051DD7A91D00104244 /* APIWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
+		35FDF7071DD7F01800104244 /* Sock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FDF6B01DD7A6ED00104244 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		351798CD1DD7A4890025B653 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				351798CE1DD7A4890025B653 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3578C6DA1DC12091009E8F73 = {
 			isa = PBXGroup;
 			children = (
 				3578C6E51DC12091009E8F73 /* LostSocks */,
 				3578C6E41DC12091009E8F73 /* Products */,
+				351798CD1DD7A4890025B653 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,6 +75,9 @@
 				3578C6ED1DC12091009E8F73 /* Assets.xcassets */,
 				3578C6EF1DC12091009E8F73 /* LaunchScreen.storyboard */,
 				3578C6F21DC12091009E8F73 /* Info.plist */,
+				35FDF6B11DD7A70700104244 /* Router.swift */,
+				35FDF7051DD7A91D00104244 /* APIWrapper.swift */,
+				35FDF7071DD7F01800104244 /* Sock.swift */,
 			);
 			path = LostSocks;
 			sourceTree = "<group>";
@@ -71,6 +92,7 @@
 				3578C6DF1DC12091009E8F73 /* Sources */,
 				3578C6E01DC12091009E8F73 /* Frameworks */,
 				3578C6E11DC12091009E8F73 /* Resources */,
+				351798D11DD7A5AC0025B653 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -88,7 +110,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "AJTY, s.r.o.";
 				TargetAttributes = {
 					3578C6E21DC12091009E8F73 = {
@@ -128,13 +150,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		351798D11DD7A5AC0025B653 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3578C6DF1DC12091009E8F73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3578C6E91DC12091009E8F73 /* ViewController.swift in Sources */,
+				35FDF6B21DD7A70700104244 /* Router.swift in Sources */,
+				35FDF7061DD7A91D00104244 /* APIWrapper.swift in Sources */,
 				3578C6E71DC12091009E8F73 /* AppDelegate.swift in Sources */,
+				35FDF7081DD7F01800104244 /* Sock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +212,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -219,6 +262,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -248,9 +292,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CDMJRT8WJB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LostSocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.ajty.LostSocks;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.ajty.lostsocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -261,9 +309,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CDMJRT8WJB;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LostSocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cz.ajty.LostSocks;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.ajty.lostsocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -288,6 +340,7 @@
 				3578C6F71DC12091009E8F73 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

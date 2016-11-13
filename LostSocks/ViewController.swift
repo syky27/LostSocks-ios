@@ -12,8 +12,25 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
 	}
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        APIWrapper.loginUser(username: "user", password: "pass" , completionHandler: { success in
+            if success {
+                APIWrapper.getSocks(completionHandler: { (socks) in
+                    print("Count of socks: \(socks.count)")
+                })
+            } else {
+                
+            }
+        
+        })
+        
+        
+        
+    }
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
