@@ -37,11 +37,18 @@ class ViewController: UIViewController {
         })
     }
     
+    func new() {
+        navigationController?.pushViewController(NewSockForm(), animated: true)
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
         title = "Lost Socks"
         setupConstraints()
         mapView.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(ViewController.new))
         
         APIWrapper.getSocks { (socks) in
             self.updateAnnotations(socks: socks)

@@ -14,9 +14,10 @@ enum Router: URLRequestConvertible {
     case loginUser(parameters: Parameters)
     case readUser
     case getSocks
+    case storeSock(parameters: Parameters)
     
     
-    static let baseURLString = "http://localhost:8080"
+    static let baseURLString = "http://lostsocksapi.herokuapp.com"
     
     var method: HTTPMethod {
         switch self {
@@ -28,7 +29,8 @@ enum Router: URLRequestConvertible {
             return .get
         case .getSocks:
             return .get
-        
+        case .storeSock:
+            return .post
         }
     }
     
@@ -41,6 +43,8 @@ enum Router: URLRequestConvertible {
         case .readUser:
             return "/api/me"
         case .getSocks:
+            return "/socks"
+        case .storeSock:
             return "/socks"
     
         }
@@ -71,7 +75,9 @@ enum Router: URLRequestConvertible {
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: parameters)
         case .loginUser(let parameters):
             urlRequest = try JSONEncoding.default.encode(urlRequest, with: parameters)
-        
+        case .storeSock(let parameters):
+            urlRequest = try JSONEncoding.default.encode(urlRequest, with: parameters)
+            
         default:
             break
         }

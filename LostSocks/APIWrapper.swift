@@ -64,4 +64,20 @@ class APIWrapper: NSObject {
             
         }
     }
+    
+    class func storeSock(_ sock: Sock, completionHandler: @escaping (Sock) -> ()) {
+        Alamofire.request(Router.storeSock(parameters: sock.json()))
+        .validate()
+        .responseJSON { (response) in
+            switch response.result {
+            case .success(let json):
+                print(json)
+                break
+                
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+    }
 }

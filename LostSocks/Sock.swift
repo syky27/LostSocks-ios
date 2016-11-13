@@ -11,8 +11,7 @@ import MapKit
 
 class Sock: NSObject, MKAnnotation {
     var id: Int?
-    var desc: String
-    var img: String
+    var d: String
     var name: String
     var time: Int
     var lat: Double
@@ -24,6 +23,10 @@ class Sock: NSObject, MKAnnotation {
         get {
             return CLLocationCoordinate2D(latitude: lat, longitude: lon)
         }
+        set (coordinates){
+            lat = coordinates.latitude
+            lon = coordinates.longitude
+        }
     }
     
     var title: String? {
@@ -33,11 +36,24 @@ class Sock: NSObject, MKAnnotation {
     }
     
     
+    init(formValues: Dictionary<String, Any>) {
+        d = formValues["d"] as! String
+        if let image = formValues["image"] {
+            imageBase64 = UIImageJPEGRepresentation(image as! UIImage, 1.0)?.base64EncodedString()
+        }
+        name = formValues["name"] as! String
+        time = Int(Date().timeIntervalSince1970)
+        let coords = formValues["coordinates"] as! CLLocation
+        lat = coords.coordinate.latitude
+        lon = coords.coordinate.longitude
+        
+        
+    }
+    
     init(node: Dictionary<String, Any>) {
         id = node["id"] as! Int
-        desc = node["desc"] as! String
+        d = node["d"] as! String
         name = node["name"] as! String
-        img = node["img"] as! String
         time = node["time"] as! Int
         lat = node["lat"] as! Double
         lon = node["lon"] as! Double
@@ -54,8 +70,7 @@ class Sock: NSObject, MKAnnotation {
     func json() -> Dictionary<String, Any> {
         return[
             "name": name,
-            "desc": desc,
-            "img": img,
+            "d": d,
             "time": time,
             "lat" : lat,
             "lon" : lon,

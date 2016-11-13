@@ -1,1 +1,3 @@
 github "Alamofire/Alamofire" "4.0.1"
+github "xmartlabs/Eureka" "2.0.0-beta.1"
+github "EurekaCommunity/ImageRow" "1.0.0"

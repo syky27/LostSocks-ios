@@ -11,6 +11,10 @@
 		3578C6E91DC12091009E8F73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3578C6E81DC12091009E8F73 /* ViewController.swift */; };
 		3578C6EE1DC12091009E8F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3578C6ED1DC12091009E8F73 /* Assets.xcassets */; };
 		3578C6F11DC12091009E8F73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3578C6EF1DC12091009E8F73 /* LaunchScreen.storyboard */; };
+		35F251EB1DD915E100D67C9C /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F251EA1DD915E100D67C9C /* Eureka.framework */; };
+		35F251ED1DD916E800D67C9C /* NewSockForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F251EC1DD916E800D67C9C /* NewSockForm.swift */; };
+		35F251EF1DD918F700D67C9C /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F251EE1DD918F700D67C9C /* CustomCells.swift */; };
+		35F252221DD91F4A00D67C9C /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F252211DD91F4A00D67C9C /* ImageRow.framework */; };
 		35FDF6B01DD7A6ED00104244 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351798CE1DD7A4890025B653 /* Alamofire.framework */; };
 		35FDF6B21DD7A70700104244 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FDF6B11DD7A70700104244 /* Router.swift */; };
 		35FDF7061DD7A91D00104244 /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FDF7051DD7A91D00104244 /* APIWrapper.swift */; };
@@ -26,6 +30,10 @@
 		3578C6ED1DC12091009E8F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3578C6F01DC12091009E8F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3578C6F21DC12091009E8F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35F251EA1DD915E100D67C9C /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		35F251EC1DD916E800D67C9C /* NewSockForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSockForm.swift; sourceTree = "<group>"; };
+		35F251EE1DD918F700D67C9C /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
+		35F252211DD91F4A00D67C9C /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		35FDF6B11DD7A70700104244 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		35FDF7051DD7A91D00104244 /* APIWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		35FDF7071DD7F01800104244 /* Sock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sock.swift; sourceTree = "<group>"; };
@@ -38,6 +46,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FDF6B01DD7A6ED00104244 /* Alamofire.framework in Frameworks */,
+				35F251EB1DD915E100D67C9C /* Eureka.framework in Frameworks */,
+				35F252221DD91F4A00D67C9C /* ImageRow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +57,8 @@
 		351798CD1DD7A4890025B653 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F252211DD91F4A00D67C9C /* ImageRow.framework */,
+				35F251EA1DD915E100D67C9C /* Eureka.framework */,
 				351798CE1DD7A4890025B653 /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -75,12 +87,14 @@
 			children = (
 				3578C6E61DC12091009E8F73 /* AppDelegate.swift */,
 				3578C6E81DC12091009E8F73 /* ViewController.swift */,
+				35F251EE1DD918F700D67C9C /* CustomCells.swift */,
 				3578C6ED1DC12091009E8F73 /* Assets.xcassets */,
 				3578C6EF1DC12091009E8F73 /* LaunchScreen.storyboard */,
 				3578C6F21DC12091009E8F73 /* Info.plist */,
 				35FDF6B11DD7A70700104244 /* Router.swift */,
 				35FDF7051DD7A91D00104244 /* APIWrapper.swift */,
 				35FDF7071DD7F01800104244 /* Sock.swift */,
+				35F251EC1DD916E800D67C9C /* NewSockForm.swift */,
 			);
 			path = LostSocks;
 			sourceTree = "<group>";
@@ -162,6 +176,8 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ImageRow.framework",
 			);
 			outputPaths = (
 			);
@@ -176,8 +192,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F251ED1DD916E800D67C9C /* NewSockForm.swift in Sources */,
 				3578C6E91DC12091009E8F73 /* ViewController.swift in Sources */,
 				35FDF6B21DD7A70700104244 /* Router.swift in Sources */,
+				35F251EF1DD918F700D67C9C /* CustomCells.swift in Sources */,
 				35FDF7061DD7A91D00104244 /* APIWrapper.swift in Sources */,
 				3578C6E71DC12091009E8F73 /* AppDelegate.swift in Sources */,
 				35FDF7081DD7F01800104244 /* Sock.swift in Sources */,
