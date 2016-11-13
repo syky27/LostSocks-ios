@@ -17,7 +17,8 @@ enum Router: URLRequestConvertible {
     case storeSock(parameters: Parameters)
     
     
-    static let baseURLString = "http://lostsocksapi.herokuapp.com"
+//    static let baseURLString = "http://lostsocksapi.herokuapp.com"
+    static let baseURLString = "http://localhost:8080"
     
     var method: HTTPMethod {
         switch self {

@@ -16,7 +16,7 @@ class Sock: NSObject, MKAnnotation {
     var time: Int
     var lat: Double
     var lon: Double
-    var imageBase64: String?
+    var imageBase64: Data?
     var demouser_id: Int?
     
     var coordinate: CLLocationCoordinate2D {
@@ -38,8 +38,8 @@ class Sock: NSObject, MKAnnotation {
     
     init(formValues: Dictionary<String, Any>) {
         d = formValues["d"] as! String
-        if let image = formValues["image"] {
-            imageBase64 = UIImageJPEGRepresentation(image as! UIImage, 1.0)?.base64EncodedString()
+        if let image = formValues["image"] as? UIImage {
+            imageBase64 = UIImageJPEGRepresentation(image as! UIImage, 1.0).enco
         }
         name = formValues["name"] as! String
         time = Int(Date().timeIntervalSince1970)
@@ -57,7 +57,7 @@ class Sock: NSObject, MKAnnotation {
         time = node["time"] as! Int
         lat = node["lat"] as! Double
         lon = node["lon"] as! Double
-        if let image = node["imageBase64"] as? String {
+        if let image = node["imageBase64"] as? Data {
             imageBase64 = image
         }
         
